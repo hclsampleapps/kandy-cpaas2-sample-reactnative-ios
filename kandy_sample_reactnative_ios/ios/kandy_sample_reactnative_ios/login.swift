@@ -44,6 +44,8 @@ class login: NSObject {
       if(response != nil) {
          self.access_token = (response?["access_token"].stringValue)!
          callback([NSNull(), self.access_token])
+      } else {
+         callback([NSNull(), "error"])
       }
     }
     
@@ -52,8 +54,7 @@ class login: NSObject {
   // LOGIN
   func loginUser(object: LoginModel,  _ handler:((_ json:JSON?)->Void)?) -> Void
   {
-    let urlString = "https://oauth-cpaas.att.com/cpaas/auth/v1/token"  //"https://nvs-cpaas-oauth.kandy.io/cpaas/auth/v1/token"
-    
+    let urlString = "https://oauth-cpaas.att.com/cpaas/auth/v1/token"
     let parameters: Parameters = [
       "client_id"      : object.clientId ?? "",
       "username"       : object.emailId ?? "",
@@ -75,7 +76,7 @@ class login: NSObject {
       guard dataResponse.result.isSuccess else {
         let error = dataResponse.result.error!
         print("POSTApi Error : ",error.localizedDescription)
-        handler?(nil)
+        handler?("error")
         return
       }
       if dataResponse.result.value != nil {
@@ -91,7 +92,7 @@ class login: NSObject {
         }
         return
       }
-      handler?(nil)
+      handler?("error")
     }
   }
   

@@ -9,7 +9,8 @@ import {
     NativeModules,
     Button,
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    ActivityIndicator
 } from 'react-native';
 
 import SMS from './SMS'
@@ -25,9 +26,13 @@ class Login extends React.Component {
         url: '',
         clientId: '',
         sourceNumber: '',
-        destinationNumber: ''
+        destinationNumber: '',
+        showLoader:false
     }
 
+    showLoader = () => { this.setState({ showLoader:true }); };
+    hideLoader = () => { this.setState({ showLoader:false }); };
+  
     handleEmail = (text) => {
         this.state.email = text
     }
@@ -45,12 +50,23 @@ class Login extends React.Component {
     }
         
     handleLogin = () => {
-        var loginManager = NativeModules.login;
-        loginManager.loginInApp(this.state.clientId,this.state.password,
-          this.state.email,this.state.url,(error, token)=>{
-              console.log(token);
-              this.props.navigation.navigate('SMS')
-        });
+        if(this.state.clientId && this.state.password  && this.state.email != "") {
+           this.showLoader();
+           var loginManager = NativeModules.login;
+           loginManager.loginInApp(this.state.clientId,this.state.password,
+             this.state.email,this.state.url,(error, token)=>{
+               if(error == null) {
+                 console.log(token);
+                 this.props.navigation.navigate('SMS')
+                 this.hideLoader();
+               } else {  
+                 this.hideLoader();
+                 alert('Message Sending Failed!');
+               }      
+           });
+        } else {
+            alert('Please fill all the details.');
+        }
     }
 
     render() {
@@ -68,7 +84,6 @@ class Login extends React.Component {
                    placeholder = "Client Id"
                    placeholderTextColor = "black"
                    autoCapitalize = "none"
-                   defaultValue = "PUB-nesonukuv.34mv"
                    onChangeText = {this.handleClientId}
                   />
 
@@ -76,7 +91,6 @@ class Login extends React.Component {
                  placeholder = "Password"
                  placeholderTextColor = "black"
                  autoCapitalize = "none"
-                 defaultValue = "Test@123"
                  onChangeText = {this.handlePassword}
                  />
 
@@ -84,20 +98,16 @@ class Login extends React.Component {
                  placeholder = "Email"
                  placeholderTextColor = "black"
                  autoCapitalize = "none"
-                 defaultValue = "nesonukuv1@planet-travel.club"
                  onChangeText = {this.handleEmail}
                  />
 
-              {/* <TextInput style = {styles.input}
-                 placeholder = "Url"
-                 placeholderTextColor = "black"
-                 autoCapitalize = "none"
-                 defaultValue = ""
-                 onChangeText = {this.handleUrl}
-              /> */}
+              <View style={{ position: 'absolute', top:"50%",right: 0, left: 0 }}>
+                 <ActivityIndicator animating={this.state.showLoader} size="large" color="grey" />
+              </View>
 
           <Button style={styles.buttonStyle}
                 title = "Login"
+                color = '#0391C2'
                 onPress = {this.handleLogin}
           />             
 

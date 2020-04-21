@@ -47,10 +47,30 @@ render()
     <Stack.Navigator>
       <Stack.Screen
         name="Login"
+        options={{
+          title: 'Login',
+          headerStyle: {
+            backgroundColor: '#0391C2',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
         component={Login}
       />
       <Stack.Screen 
         name="SMS"
+        options={{
+          title: 'SMS',
+          headerStyle: {
+            backgroundColor: '#0391C2',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
         component={SMS} 
       />
     </Stack.Navigator>

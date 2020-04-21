@@ -10,7 +10,8 @@ import {
     NativeModules,
     Button,
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    ActivityIndicator
 } from 'react-native';
 
 class SMS extends React.Component {
@@ -54,7 +55,6 @@ class SMS extends React.Component {
                  placeholder = "Source number"
                  placeholderTextColor = "black"
                  autoCapitalize = "none"
-                 defaultValue = "+15205829024"
                  onChangeText = {this.handleSourceNumber}
           />
 
@@ -62,7 +62,6 @@ class SMS extends React.Component {
                  placeholder = "Destination number"
                  placeholderTextColor = "black"
                  autoCapitalize = "none"
-                 defaultValue = "+18022761022"
                  onChangeText = {this.handleDestinationNumber}
           />
 
@@ -70,7 +69,6 @@ class SMS extends React.Component {
                  placeholder = "Enter the text"
                  placeholderTextColor = "black"
                  autoCapitalize = "none"
-                 defaultValue = "SMS"
                  onChangeText = {this.handleMessageText}
           />
 
