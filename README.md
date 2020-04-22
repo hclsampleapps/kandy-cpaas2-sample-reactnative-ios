@@ -33,7 +33,7 @@ For troubleshooting, please refer this link [How to install cocoapods?](https://
 To setup the project repository, run these commands
 
 ```
-git clone  https://github.com/hclsampleapps/kandy-cpaas2-sample-reactnative-ios.git
+git clone https://github.com/hclsampleapps/kandy-cpaas2-sample-reactnative-ios.git
 cd kandy-cpaas2-sample-reactnative-ios then move cd folder kandy_sample_reactnative_ios
 ```
 
@@ -41,9 +41,10 @@ cd kandy-cpaas2-sample-reactnative-ios then move cd folder kandy_sample_reactnat
 Instructions to build the app
 
 1. Open the project folder(kandy_sample_reactnative_ios) in terminal.
-2. Run 'npm install' it will add all the node packages required.
+2. Run > npm install it will add all the node packages required.
 3. Then move to ios folder.
-4. Run 'pod install' it will add all the pods required.
+4. Run > pod install it will add all the pods required.
 4. Open RibbonSample.xcworkspace from Xcode or run react-native run-ios from terminal in root folder.
 5. Build and deploy the app.
+
 
