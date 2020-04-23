@@ -1,10 +1,3 @@
-//
-//  SMS.m
-//  AwesomeProject
-//
-//  Created by Viviksha on 24/03/20.
-//  Copyright © 2020 Facebook. All rights reserved.
-//
 
 #import <Foundation/Foundation.h>
 

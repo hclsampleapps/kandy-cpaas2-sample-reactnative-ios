@@ -35,6 +35,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Login from './Screens/Login';
 import SMS from './Screens/SMS';
+import Chat from './Screens/Chat';
+import DashBoard from './Screens/DashBoard';
 
 const Stack = createStackNavigator();
 
@@ -59,6 +61,22 @@ render()
         }}
         component={Login}
       />
+
+      <Stack.Screen
+        name="DashBoard"
+        options={{
+          title: 'DashBoard',
+          headerStyle: {
+            backgroundColor: '#0391C2',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        component={DashBoard}
+      />
+
       <Stack.Screen 
         name="SMS"
         options={{
@@ -72,6 +90,20 @@ render()
           },
         }}
         component={SMS} 
+      />
+       <Stack.Screen
+        name="Chat"
+        options={{
+          title: 'Chat',
+          headerStyle: {
+            backgroundColor: '#0391C2',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        component={Chat}
       />
     </Stack.Navigator>
     </NavigationContainer>      
