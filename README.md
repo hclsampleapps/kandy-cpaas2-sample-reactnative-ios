@@ -1,8 +1,8 @@
 # kandy-cpaas2-sample-reactnative-ios
-Sample app of CPaaS2 modules (Login, SMS)
+ReactNative based communication app is used to create communication channel between two users via Voice/Video APIs
 
 ## Introduction
-It is a sample app where CPaaS2 APIs are used to make the following modules
+Sample app made using CPaaS2 APIs to make these modules
 
 - [x] Login
 - [x] SMS
@@ -32,19 +32,20 @@ For troubleshooting, please refer this link [How to install cocoapods?](https://
 ### Setup repository
 To setup the project repository, run these commands
 
-```
+```shell
 git clone https://github.com/hclsampleapps/kandy-cpaas2-sample-reactnative-ios.git
-cd kandy-cpaas2-sample-reactnative-ios then move cd folder kandy_sample_reactnative_ios
+cd kandy-cpaas2-sample-reactnative-ios 
+cd kandy_sample_reactnative_ios
 ```
 
 ### Build application
 Instructions to build the app
 
-1. Open the project folder(kandy_sample_reactnative_ios) in terminal.
-2. Run > npm install it will add all the node packages required.
-3. Then move to ios folder.
-4. Run > pod install it will add all the pods required.
-4. Open RibbonSample.xcworkspace from Xcode or run react-native run-ios from terminal in root folder.
-5. Build and deploy the app.
+1. Open the project folder `kandy_sample_reactnative_ios` in terminal.
+2. Run `npm install` that will add all the node packages required.
+3. Then move to `ios` folder.
+4. Run `pod install` that will add all the pods required.
+5. Open `RibbonSample.xcworkspace` from Xcode or run `react-native run-ios` from terminal in root folder.
+6. Build and deploy the app.
 
 
