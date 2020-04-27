@@ -17,13 +17,18 @@ import AVFoundation
 
 @objc(Chat)
 
-class Chat: NSObject {
-
+class Chat: RCTEventEmitter,CPChatDelegate {
+  
   var cpaas: CPaaS!
 
   @objc func sendChat(_ destinationId: String,messageText: String,callback:@escaping RCTResponseSenderBlock) {
+    DispatchQueue.main.async {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    self.cpaas = appDelegate.cpassObj
+    self.cpaas.chatService?.delegate = self
     self.sendChatMessageToCpass(destinationId: destinationId, message: messageText) { (response) in
         callback([NSNull(), response ?? "sucess"])
+    }
     }
   }
 
@@ -51,4 +56,38 @@ class Chat: NSObject {
        }
     }
   }
+  
+  func inboundMessageReceived(message: CPInboundMessage) {
+        print("message recived");
+        sendEvent(withName: "messageReceived", body: ["message": message.description])
+  }
+  
+  func deliveryStatusChanged(status: CPMessageStatus) {
+      print("message send");
+  }
+  
+  func outboundMessageSent(message: CPOutboundMessage) {
+        print("status");
+  }
+  
+  func isComposing(message: CPIsComposingMessage) {
+    
+  }
+  
+  func groupInvitationReceived(invitation: CPChatGroupInvitation) {
+    
+  }
+  
+  func groupParticipantStatus(participants: [CPChatGroupParticipant]) {
+    
+  }
+  
+  func groupChatEnded(groupID: String) {
+    
+  }
+
+  override func supportedEvents() -> [String]! {
+       return ["messageReceived"]
+  }
+  
 }

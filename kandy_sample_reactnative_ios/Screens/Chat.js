@@ -11,8 +11,12 @@ import {
     Button,
     TextInput,
     TouchableOpacity,
-    ActivityIndicator
+    ActivityIndicator,
+    NativeEventEmitter
 } from 'react-native';
+
+var chatManager = NativeModules.SMS;
+var chatEvents = new NativeEventEmitter(NativeModules.Chat)
 
 class Chat extends React.Component {
     static navigationOptions = {
@@ -23,7 +27,16 @@ class Chat extends React.Component {
         destinationId: '',
         messageText: ''
     }
-      
+    
+   chatEvents = chatEvents.addListener(
+      "messageReceived",
+      res => {
+        if(res != null) {
+          alert('Message Received Successfully!');
+        }
+    }
+)
+
     handleDestinationId = (text) => {
         this.state.destinationId = text;
     }
@@ -33,7 +46,7 @@ class Chat extends React.Component {
     }
    
     handleChat = () => {
-        var chatManager = NativeModules.Chat;
+        chatManager = NativeModules.Chat;
         chatManager.sendChat(this.state.destinationId,this.state.messageText,(error, message)=>{
               if(error == null) {
                   console.log("Chat Send successfully");

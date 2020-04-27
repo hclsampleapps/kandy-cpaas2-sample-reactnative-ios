@@ -4,22 +4,32 @@ import  CPaaSSDK
 import UIKit
 import Alamofire
 import SwiftyJSON
-import  CPaaSSDK
+import CPaaSSDK
 import AVFoundation
-
 
 @objc(SMS)
 
-class SMS: NSObject {
-  
+class SMS: RCTEventEmitter,CPSmsDelegate {
+
 var cpaas: CPaaS!
-  
+public static var shared:SMS?
+
+override init() {
+      super.init()
+}
+    
 @objc func sendMessage(_ destinationNumber: String,sourceNumber: String,messageText: String,callback:@escaping RCTResponseSenderBlock) {
+  
+  DispatchQueue.main.async {
+  let appDelegate = UIApplication.shared.delegate as! AppDelegate
+  self.cpaas = appDelegate.cpassObj
+  self.cpaas.smsService?.delegate = self
   self.sendMessage(message: messageText, destinationNumber: destinationNumber, sourceNumber: sourceNumber) { (response) in
       callback([NSNull(), "sucess"])
   }
+  }
 }
-  
+
 func sendSms(destinationNumber: String,sourceNumber: String,messageText: String,callback: @escaping RCTResponseSenderBlock) {
      self.sendMessage(message: messageText, destinationNumber: destinationNumber, sourceNumber: sourceNumber) { (response) in
         callback([NSNull(), "sucess"])
@@ -50,5 +60,22 @@ func sendMessage(message: String,destinationNumber: String,sourceNumber: String,
   }
 }
 }
+  
+  func inboundMessageReceived(message: CPInboundMessage) {
+    print("message recived");
+    sendEvent(withName: "messageReceived", body: ["message": message.description])
+  }
+  
+  func deliveryStatusChanged(status: CPMessageStatus) {
+        print("status",status);
+  }
+  
+  func outboundMessageSent(message: CPOutboundMessage) {
+       print("status");
+  }
 
+  override func supportedEvents() -> [String]! {
+     return ["messageReceived"]
+   }
+  
 }

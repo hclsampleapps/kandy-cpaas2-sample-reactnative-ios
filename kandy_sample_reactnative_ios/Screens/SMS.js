@@ -11,8 +11,13 @@ import {
     Button,
     TextInput,
     TouchableOpacity,
-    ActivityIndicator
+    ActivityIndicator,
+    NativeEventEmitter
 } from 'react-native';
+
+var smsManager = NativeModules.SMS;
+
+var smsEvents = new NativeEventEmitter(NativeModules.SMS)
 
 class SMS extends React.Component {
     static navigationOptions = {
@@ -25,28 +30,40 @@ class SMS extends React.Component {
         messageText: ''
     }
  
+    constructor(props) {
+      super(props);
+    }
+
+    smsEvents = smsEvents.addListener(
+            "messageReceived",
+            res => {
+              if(res != null) {
+                alert('Message Received Successfully!');
+              }
+          }
+    )
+    
     handleSourceNumber = (text) => {
         this.state.sourceNumber = text;
-      }
-      
-    handleDestinationNumber = (text) => {
-        this.state.destinationNumber = text;
     }
+
+    handleDestinationNumber = (text) => {
+      this.state.destinationNumber = text;
+   }
 
     handleMessageText = (text) => {
         this.state.messageText = text;
     }
    
     handleSMS = () => {
-        var smsManager = NativeModules.SMS;
         smsManager.sendMessage(this.state.destinationNumber,this.state.sourceNumber,this.state.messageText,(error, message)=>{
               if(error == null) {
                   console.log("SMS Send successfully");
                   alert('Message Send Successfully!');
               }
         });
-    }  
-
+    }
+   
     render() {
       return (
         <View>

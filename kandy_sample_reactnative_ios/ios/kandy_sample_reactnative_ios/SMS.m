@@ -1,14 +1,11 @@
 
 #import <Foundation/Foundation.h>
-
 #import "React/RCTBridgeModule.h"
+#import "React/RCTEventEmitter.h"
 
-@interface RCT_EXTERN_MODULE(SMS, NSObject)
+@interface RCT_EXTERN_MODULE(SMS, RCTEventEmitter)
 
 RCT_EXTERN_METHOD(sendMessage:(NSString *)destinationNumber sourceNumber:(NSString *)sourceNumber messageText:(NSString*)message callback:(RCTResponseSenderBlock)callback)
-
-RCT_EXTERN_METHOD(reciveMessage:callback:(RCTResponseSenderBlock)callback)
-
 
 @end
 

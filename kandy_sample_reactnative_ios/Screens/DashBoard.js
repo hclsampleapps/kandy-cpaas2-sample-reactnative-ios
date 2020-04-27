@@ -26,7 +26,7 @@ class DashBoard extends React.Component {
     }
     
     handleChat = (text) => {
-        this.props.navigation.navigate('Login')
+        this.props.navigation.navigate('Chat')
     }
         
     render() {
