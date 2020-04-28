@@ -1,11 +1,12 @@
 # kandy-cpaas2-sample-reactnative-ios
-ReactNative based communication app is used to create communication channel between two users via Voice/Video APIs
+ReactNative based communication app is used to create communication channel between two users.
 
 ## Introduction
 Sample app made using CPaaS2 APIs to make these modules
 
 - [x] Login
 - [x] SMS
+- [x] Chat
 
 ## Installation
 Instructions to install the .ipa on iPhone using Xcode
