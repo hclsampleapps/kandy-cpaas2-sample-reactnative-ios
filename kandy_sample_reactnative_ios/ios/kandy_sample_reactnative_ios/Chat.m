@@ -7,4 +7,6 @@
 
 RCT_EXTERN_METHOD(sendChat:(NSString *)destinationId messageText:(NSString*)message callback:(RCTResponseSenderBlock)callback)
 
+RCT_EXTERN_METHOD(initChatModule:(RCTResponseSenderBlock)callback)
+
 @end

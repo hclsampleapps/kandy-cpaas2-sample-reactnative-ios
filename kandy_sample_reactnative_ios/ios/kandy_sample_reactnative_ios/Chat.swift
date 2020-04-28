@@ -1,10 +1,3 @@
-//
-//  Chat.swift
-//  kandy_sample_reactnative_ios
-//
-//  Created by Viviksha on 22/04/20.
-//
-
 
 import  Foundation
 import  CPaaSSDK
@@ -21,11 +14,17 @@ class Chat: RCTEventEmitter,CPChatDelegate {
   
   var cpaas: CPaaS!
 
+  @objc func initChatModule(_ callback:@escaping RCTResponseSenderBlock) {
+     DispatchQueue.main.async {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.cpaas = appDelegate.cpassObj
+        self.cpaas.chatService?.delegate = self
+        callback([NSNull(),"sucess"])
+    }
+  }
+  
   @objc func sendChat(_ destinationId: String,messageText: String,callback:@escaping RCTResponseSenderBlock) {
     DispatchQueue.main.async {
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    self.cpaas = appDelegate.cpassObj
-    self.cpaas.chatService?.delegate = self
     self.sendChatMessageToCpass(destinationId: destinationId, message: messageText) { (response) in
         callback([NSNull(), response ?? "sucess"])
     }
@@ -34,9 +33,7 @@ class Chat: RCTEventEmitter,CPChatDelegate {
 
   func sendChatMessageToCpass(destinationId: String,message: String,callback:@escaping RCTResponseSenderBlock) {
       DispatchQueue.main.async {
-      let appDelegate = UIApplication.shared.delegate as! AppDelegate
-      self.cpaas = appDelegate.cpassObj
-
+        
        if let conversation = self.cpaas.chatService!.createConversation(withParticipant: destinationId) {
            conversation.send(withText: message){
                (error, newMessage) in

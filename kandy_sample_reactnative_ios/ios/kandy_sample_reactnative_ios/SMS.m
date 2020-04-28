@@ -7,5 +7,7 @@
 
 RCT_EXTERN_METHOD(sendMessage:(NSString *)destinationNumber sourceNumber:(NSString *)sourceNumber messageText:(NSString*)message callback:(RCTResponseSenderBlock)callback)
 
+RCT_EXTERN_METHOD(initSMSModule:(RCTResponseSenderBlock)callback)
+
 @end
 

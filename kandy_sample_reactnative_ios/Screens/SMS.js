@@ -16,7 +16,6 @@ import {
 } from 'react-native';
 
 var smsManager = NativeModules.SMS;
-
 var smsEvents = new NativeEventEmitter(NativeModules.SMS)
 
 class SMS extends React.Component {
@@ -43,6 +42,14 @@ class SMS extends React.Component {
           }
     )
     
+    componentDidMount(){
+      smsManager.initSMSModule((error, message) =>{
+        if(error == null) {
+          console.log("SMS initialize");
+        }
+      });
+     }
+
     handleSourceNumber = (text) => {
         this.state.sourceNumber = text;
     }

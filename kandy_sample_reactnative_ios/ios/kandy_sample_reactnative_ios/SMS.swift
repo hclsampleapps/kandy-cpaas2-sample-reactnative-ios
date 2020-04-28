@@ -12,18 +12,24 @@ import AVFoundation
 class SMS: RCTEventEmitter,CPSmsDelegate {
 
 var cpaas: CPaaS!
-public static var shared:SMS?
+  
+//public static var shared:SMS?
 
 override init() {
       super.init()
 }
-    
-@objc func sendMessage(_ destinationNumber: String,sourceNumber: String,messageText: String,callback:@escaping RCTResponseSenderBlock) {
   
+@objc func initSMSModule(_ callback:@escaping RCTResponseSenderBlock) {
+     DispatchQueue.main.async {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        self.cpaas = appDelegate.cpassObj
+        self.cpaas.smsService?.delegate = self
+        callback([NSNull(),"sucess"])
+    }
+}
+    
+@objc func sendMessage(_ destinationNumber: String,sourceNumber: String,messageText: String,callback:@escaping RCTResponseSenderBlock) {  
   DispatchQueue.main.async {
-  let appDelegate = UIApplication.shared.delegate as! AppDelegate
-  self.cpaas = appDelegate.cpassObj
-  self.cpaas.smsService?.delegate = self
   self.sendMessage(message: messageText, destinationNumber: destinationNumber, sourceNumber: sourceNumber) { (response) in
       callback([NSNull(), "sucess"])
   }
@@ -39,9 +45,6 @@ func sendSms(destinationNumber: String,sourceNumber: String,messageText: String,
 func sendMessage(message: String,destinationNumber: String,sourceNumber: String,_ handler:((_ json:JSON?)->Void)?) -> Void {
   
   DispatchQueue.main.async {
-  let appDelegate = UIApplication.shared.delegate as! AppDelegate
-  self.cpaas = appDelegate.cpassObj
-  
   if let conversation = self.cpaas.smsService!.createConversation(fromAddress: sourceNumber, withParticipant: destinationNumber) {
     let msg = self.cpaas.smsService!.createMessage(withText: message)
     conversation.send(message: msg){

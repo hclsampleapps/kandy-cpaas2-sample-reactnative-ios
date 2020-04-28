@@ -15,7 +15,7 @@ import {
     NativeEventEmitter
 } from 'react-native';
 
-var chatManager = NativeModules.SMS;
+var chatManager = NativeModules.Chat;
 var chatEvents = new NativeEventEmitter(NativeModules.Chat)
 
 class Chat extends React.Component {
@@ -35,7 +35,15 @@ class Chat extends React.Component {
           alert('Message Received Successfully!');
         }
     }
-)
+  )
+
+  componentDidMount(){
+    chatManager.initChatModule((error, message) =>{
+      if(error == null) {
+          console.log("Chat initialize");
+      }
+    });
+   }
 
     handleDestinationId = (text) => {
         this.state.destinationId = text;
@@ -46,7 +54,6 @@ class Chat extends React.Component {
     }
    
     handleChat = () => {
-        chatManager = NativeModules.Chat;
         chatManager.sendChat(this.state.destinationId,this.state.messageText,(error, message)=>{
               if(error == null) {
                   console.log("Chat Send successfully");
