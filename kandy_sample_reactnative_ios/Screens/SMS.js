@@ -45,7 +45,7 @@ class SMS extends React.Component {
     componentDidMount(){
       smsManager.initSMSModule((error, message) =>{
         if(error == null) {
-          console.log("SMS initialize");
+          console.log("SMS module initialize");
         }
       });
      }
@@ -64,10 +64,13 @@ class SMS extends React.Component {
    
     handleSMS = () => {
         smsManager.sendMessage(this.state.destinationNumber,this.state.sourceNumber,this.state.messageText,(error, message)=>{
-              if(error == null) {
+          if(message != undefined) {
                   console.log("SMS Send successfully");
                   alert('Message Send Successfully!');
-              }
+          } else {
+            console.log("SMS Sending failed");
+            alert('Message Sending failed!');
+          }
         });
     }
    

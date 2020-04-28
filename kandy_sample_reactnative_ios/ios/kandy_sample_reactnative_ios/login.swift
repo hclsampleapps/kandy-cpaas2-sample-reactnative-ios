@@ -41,14 +41,13 @@ class login: NSObject {
         model.password =  password
     
     self.loginUser(object: model) { (response) in
-      if(response != nil) {
+      if(response?.description != "error") {
          self.access_token = (response?["access_token"].stringValue)!
          callback([NSNull(), self.access_token])
       } else {
-         callback([NSNull(), "error"])
+         callback([NSNull()])
       }
     }
-    
   }
     
   // LOGIN
@@ -89,6 +88,8 @@ class login: NSObject {
           self.setConfig()
           self.subscribeServices()
           self.setToken()
+        } else {
+          handler?("error")
         }
         return
       }

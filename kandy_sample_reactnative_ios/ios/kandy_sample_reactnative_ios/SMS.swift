@@ -31,14 +31,24 @@ override init() {
 @objc func sendMessage(_ destinationNumber: String,sourceNumber: String,messageText: String,callback:@escaping RCTResponseSenderBlock) {  
   DispatchQueue.main.async {
   self.sendMessage(message: messageText, destinationNumber: destinationNumber, sourceNumber: sourceNumber) { (response) in
-      callback([NSNull(), "sucess"])
+      if(response?.description == "error") {
+             callback([NSNull()])
+           }
+           else {
+             callback([NSNull(), "sucess"])
+      }
   }
   }
 }
 
 func sendSms(destinationNumber: String,sourceNumber: String,messageText: String,callback: @escaping RCTResponseSenderBlock) {
      self.sendMessage(message: messageText, destinationNumber: destinationNumber, sourceNumber: sourceNumber) { (response) in
+      if(response?.description == "error") {
+        callback([NSNull()])
+      }
+      else {
         callback([NSNull(), "sucess"])
+      }
     }
 }
   
@@ -51,7 +61,7 @@ func sendMessage(message: String,destinationNumber: String,sourceNumber: String,
       (error, newMessage) in
       if error != nil {
         print("SmsService.send failed. destination: \(String(describing: destinationNumber)). Error desc:\(error!.description)")
-        handler?("Failure")
+        handler?("error")
       } else {
         print("SMS message sent to \(String(describing: destinationNumber))!")
         handler?("Sucess")
@@ -59,7 +69,7 @@ func sendMessage(message: String,destinationNumber: String,sourceNumber: String,
     }
   }else{
     print("SmsService.send failed.")
-    handler?("Failure")
+    handler?("error")
   }
 }
 }

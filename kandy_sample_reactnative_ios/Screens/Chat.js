@@ -40,7 +40,7 @@ class Chat extends React.Component {
   componentDidMount(){
     chatManager.initChatModule((error, message) =>{
       if(error == null) {
-          console.log("Chat initialize");
+          console.log("Chat module initialize");
       }
     });
    }
@@ -55,10 +55,14 @@ class Chat extends React.Component {
    
     handleChat = () => {
         chatManager.sendChat(this.state.destinationId,this.state.messageText,(error, message)=>{
-              if(error == null) {
-                  console.log("Chat Send successfully");
+          if(message != undefined) {
+            console.log("Chat Send successfully");
                   alert('Chat Send Successfully!');
-              }
+            } else {
+                  console.log("Message Sending failed");
+                  alert('Message Sending failed!');
+
+            }
         });
     }  
 
