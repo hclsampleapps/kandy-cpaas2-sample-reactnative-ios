@@ -14,8 +14,10 @@ import {
 } from 'react-native';
 
 import SMS from './SMS'
+import DashBoard from './DashBoard'
 
 class Login extends React.Component {
+  
     static navigationOptions = {
       title: 'Login',
     };
@@ -55,13 +57,13 @@ class Login extends React.Component {
            var loginManager = NativeModules.login;
            loginManager.loginInApp(this.state.clientId,this.state.password,
              this.state.email,this.state.url,(error, token)=>{
-               if(error == null) {
+               if(token != null) {
                  console.log(token);
-                 this.props.navigation.navigate('SMS')
+                 this.props.navigation.navigate('DashBoard')
                  this.hideLoader();
                } else {  
                  this.hideLoader();
-                 alert('Message Sending Failed!');
+                 alert('Login Failed. Please check the credentials.');
                }      
            });
         } else {
