@@ -28,6 +28,10 @@ class DashBoard extends React.Component {
     handleChat = (text) => {
         this.props.navigation.navigate('Chat')
     }
+
+    handlePersence = (text) => {
+      this.props.navigation.navigate('Persence')
+    }
         
     render() {
       return (
@@ -42,6 +46,13 @@ class DashBoard extends React.Component {
                 title = "Chat"
                 color = '#0391C2'
                 onPress = {this.handleChat}
+        /> 
+
+        
+         <Button style={styles.buttonStyle}
+                title = "Persence"
+                color = '#0391C2'
+                onPress = {this.handlePersence}
         />            
      </View> 
     );

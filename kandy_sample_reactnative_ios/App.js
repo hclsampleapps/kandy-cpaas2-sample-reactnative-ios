@@ -35,6 +35,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Login from './Screens/Login';
 import SMS from './Screens/SMS';
+import Persence from './Screens/Persence';
 import Chat from './Screens/Chat';
 import DashBoard from './Screens/DashBoard';
 
@@ -104,6 +105,21 @@ render()
           },
         }}
         component={Chat}
+      />
+
+        <Stack.Screen
+        name="Persence"
+        options={{
+          title: 'Persence',
+          headerStyle: {
+            backgroundColor: '#0391C2',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        component={Persence}
       />
     </Stack.Navigator>
     </NavigationContainer>      
