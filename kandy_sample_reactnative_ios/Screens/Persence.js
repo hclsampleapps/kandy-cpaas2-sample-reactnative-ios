@@ -26,7 +26,8 @@ class Persence extends React.Component {
 
     state = {
         messageText: '',
-        currentStatus: ''
+        currentStatus: '',
+        subscriberId: ''
     }
 
     persenceEvents = persenceEvents.addListener(
@@ -103,8 +104,18 @@ class Persence extends React.Component {
         this.state.destinationId = text;
     }
 
-    handleMessageText = (text) => {
-        this.state.messageText = text;
+    handleSubscriberId = (text) => {
+      this.state.subscriberId = text;
+    }
+
+    checkPersence() {
+      persenceManager.getPersence("test",(error, message)=>{
+        if(error == null) {
+                alert('Persence Send Successfully!');
+          } else {
+                alert('Persence Sending failed!');
+          }
+      });
     }
    
     render() {
@@ -118,6 +129,20 @@ class Persence extends React.Component {
         <Button style={styles.buttonStyle}
                 title = "Press here to set your status"
                 onPress = {this.openPicker}
+          /> 
+        </View>
+
+        <View>
+        <TextInput style = {styles.input}
+                 placeholder = "Enter the Subscriber Id"
+                 placeholderTextColor = "black"
+                 autoCapitalize = "none"
+                 onChangeText = {this.handleSubscriberId}
+        />
+
+        <Button style={styles.buttonStyle}
+                title = "Check status of Subscriber Id"
+                onPress = {this.checkPersence}
           /> 
         </View>
         </View> 
