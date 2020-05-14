@@ -37,6 +37,7 @@ import Login from './Screens/Login';
 import SMS from './Screens/SMS';
 import Persence from './Screens/Persence';
 import Chat from './Screens/Chat';
+import Call from './Screens/Call';
 import DashBoard from './Screens/DashBoard';
 
 const Stack = createStackNavigator();
@@ -121,6 +122,22 @@ render()
         }}
         component={Persence}
       />
+
+    <Stack.Screen
+        name="Call"
+        options={{
+          title: 'Call',
+          headerStyle: {
+            backgroundColor: '#0391C2',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        component={Call}
+      />
+
     </Stack.Navigator>
     </NavigationContainer>      
   );

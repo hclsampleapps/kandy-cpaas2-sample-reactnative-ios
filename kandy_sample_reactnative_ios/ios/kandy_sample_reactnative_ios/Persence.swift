@@ -14,6 +14,9 @@ class Persence: RCTEventEmitter,CPPresenceDelegate {
   
   var cpaas: CPaaS!
   var presentitylist: CPPresentityList? = nil
+  var prentiyList : CPPresentityList?
+  var prenties = [CPPresentity]()
+  var myNewDictArray: [Dictionary<String, String>] = []
 
   @objc func initPresenceModule(_ callback:@escaping RCTResponseSenderBlock) {
      DispatchQueue.main.async {
@@ -35,12 +38,14 @@ class Persence: RCTEventEmitter,CPPresenceDelegate {
     })
   }
   
+  
   @objc func getPersence(_ subscriberId: String,callback:@escaping RCTResponseSenderBlock) {
     self.checkPersense(subcriberId: subscriberId) { (response) in
             if(response?.description == "error") {
               callback([response?.description as Any,"error"])
             } else {
-              callback([NSNull(), response as Any])
+              callback([NSNull(), self.myNewDictArray])
+              self.myNewDictArray = []
           }
     }
   }
@@ -77,30 +82,27 @@ class Persence: RCTEventEmitter,CPPresenceDelegate {
                 }
                 // Take second step of fetching status for this list
                 self.presentitylist?.fetchStatus { (error, presentityStatusList) in
-                      callback([NSNull(),presentityStatusList])
+                  self.listOfPresenties(list: presentityStatusList!)
+                  callback(self.prenties)
                 }
             } else {
-              callback([NSNull(),"error"])
+              callback([error.debugDescription,"error"])
       }
         }
-    
-//        let contacts = [subcriberId]
-//         self.cpaas.presenceService?.createPresentityList(name: "default", presentities: contacts) {
-//             (error, newPresentityList) in
-//             if error == nil {
-//                 self.presentitylist = newPresentityList
-//                 // subscribe for updates to this list
-//                 self.presentitylist?.subscribe { (error) in
-//                     // don't indicate error to application, just print a log
-//                     if let error = error {
-//                         print("Failed to subscribe to presentityList \(self.presentitylist?.name ?? "nil"): \(error.localizedDescription)")
-//                     }
-//                 }
-//             } else {
-//                 print("Failed to create presentityList \(self.presentitylist?.name ?? "nil"): \(String(describing: error?.localizedDescription))")
-//             }
-//         }
   }
+  
+  func listOfPresenties(list: Any) {
+       prentiyList = list as? CPPresentityList
+       if let aList  = prentiyList {
+           prenties = Array(aList.presentities)
+       }
+        for current in prenties {
+          var emptyDic:[String:String] = [:]
+          emptyDic["userID"] = current.userID
+          emptyDic["activity"] = current.activity.state.rawValue
+          self.myNewDictArray.append(emptyDic)
+        }
+   }
   
   override func supportedEvents() -> [String]! {
        return ["messageReceived"]

@@ -13,7 +13,8 @@ import {
     TouchableOpacity,
     ActivityIndicator,
     NativeEventEmitter,
-    ActionSheetIOS
+    ActionSheetIOS,
+    FlatList
 } from 'react-native';
 
 var persenceManager = NativeModules.Persence;
@@ -27,7 +28,8 @@ class Persence extends React.Component {
     state = {
         messageText: '',
         currentStatus: '',
-        subscriberId: ''
+        subscriberId: '',
+        presenters:[]
     }
 
     persenceEvents = persenceEvents.addListener(
@@ -38,6 +40,9 @@ class Persence extends React.Component {
         }
     }
   )
+
+  showLoader = () => { this.setState({ showLoader:true }); };
+  hideLoader = () => { this.setState({ showLoader:false }); };
 
   openPicker = () => {
     ActionSheetIOS.showActionSheetWithOptions(
@@ -93,31 +98,34 @@ class Persence extends React.Component {
 
 
   componentDidMount(){
+    this.showLoader();
     persenceManager.initPresenceModule((error, message) =>{
       if(error == null) {
-          console.log("Chat module initialize");
+          console.log("Presence module initialize");
+          this.checkPersence();
       }
     });
    }
 
-    handleDestinationId = (text) => {
-        this.state.destinationId = text;
-    }
+  componentWillUnmount() {
+    this.state.presenters.length = 0
+  }
 
-    handleSubscriberId = (text) => {
+  handleSubscriberId = (text) => {
       this.state.subscriberId = text;
     }
 
     checkPersence() {
-      persenceManager.getPersence("test",(error, message)=>{
+      persenceManager.getPersence("test",(error, response)=>{
         if(error == null) {
-                alert('Persence Send Successfully!');
-          } else {
+          this.setState({ presenters: response });
+          this.hideLoader();
+        } else {
                 alert('Persence Sending failed!');
           }
       });
     }
-   
+
     render() {
       return (
         <View>
@@ -132,30 +140,51 @@ class Persence extends React.Component {
           /> 
         </View>
 
+        <View style={{ position: 'absolute', top:"50%",right: 0, left: 0 }}>
+                 <ActivityIndicator animating={this.state.showLoader} size="large" color="grey" />
+        </View>
+        
         <View>
-        <TextInput style = {styles.input}
-                 placeholder = "Enter the Subscriber Id"
-                 placeholderTextColor = "black"
-                 autoCapitalize = "none"
-                 onChangeText = {this.handleSubscriberId}
+            <Text style={styles.label_text}>
+              Contacts list with there status.
+            </Text>
+        </View>
+        <FlatList
+        data={this.state.presenters}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => (
+            <TouchableOpacity>
+                <View>
+                <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.cell_text}>{item.userID}</Text>
+                    </View>
+                </View>
+                <View>
+                <View style={{ flexDirection: 'row' }}>
+                        <Text style={styles.cell_text}>{item.activity}</Text>
+                    </View>
+                </View>
+            </TouchableOpacity>
+        )}
         />
 
-        <Button style={styles.buttonStyle}
-                title = "Check status of Subscriber Id"
-                onPress = {this.checkPersence}
-          /> 
-        </View>
         </View> 
     );
     }
   }
 
 const styles = StyleSheet.create({  
-    Welcome_text: {
+   cell_text: {
+      marginTop: 10,
+      marginBottom: 20,
+      marginLeft: 20,
+      fontSize:12
+    },
+    label_text: {
         marginTop: 10,
-        marginBottom: 0,
+        marginBottom: 20,
         marginLeft: 20,
-        fontSize:25,
+        fontSize:20,
         fontWeight: 'bold'
      },
      Login_text: {
