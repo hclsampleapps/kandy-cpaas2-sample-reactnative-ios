@@ -1,61 +1,90 @@
-import React, { Component } from 'react';
-import {
-    SafeAreaView,
-    StyleSheet,
-    ScrollView,
-    View,
-    Text,
-    StatusBar,
-    NativeModules,
-    Button,
-    TextInput,
-    TouchableOpacity,
-    ActivityIndicator
-} from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, FlatList, Dimensions , TouchableWithoutFeedback} from 'react-native';
+
+const data = [
+  { key: 'SMS' }, { key: 'Chat' }, { key: 'Persence' }
+];
+
+const formatData = (data, numColumns) => {
+  const numberOfFullRows = Math.floor(data.length / numColumns);
+  let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
+  while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
+    data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true });
+    numberOfElementsLastRow++;
+  }
+  return data;
+};
+
+const numColumns = 2;
 
 class DashBoard extends React.Component {
-    static navigationOptions = {
-      title: 'DashBoard',
-    };
 
-    showLoader = () => { this.setState({ showLoader:true }); };
-    hideLoader = () => { this.setState({ showLoader:false }); };
-
-    handleSMS = (text) => {
+  onPressAction = (text) => {
+    switch(text) {
+      case 'SMS':
         this.props.navigation.navigate('SMS')
-    }
-    
-    handleChat = (text) => {
+        break;
+      
+      case 'Chat':
         this.props.navigation.navigate('Chat')
-    }
-        
-    render() {
-      return (
-        <View style={styles.container}>    
-        <Button style={styles.buttonStyle}
-                title = "SMS"
-                color = '#0391C2'
-                onPress = {this.handleSMS}
-        />    
+        break;
+ 
+      case 'Persence':
+        this.props.navigation.navigate('Persence')
+        break;
 
-         <Button style={styles.buttonStyle}
-                title = "Chat"
-                color = '#0391C2'
-                onPress = {this.handleChat}
-        />            
-     </View> 
-    );
-    }
+      default:
+        Alert.alert("Wrong Choice");
+      }
   }
 
-  const styles = StyleSheet.create({   
-    buttonStyle: {
-      marginTop: 20,
-      padding: 20,
-      borderRadius:10,
-      borderColor:'black',
-      flex: 60
+   renderItem = ({ item, index }) => {
+    if (item.empty === true) {
+      return <View style={[styles.item, styles.itemInvisible]} />;
     }
-    });
+    return (
+      <TouchableWithoutFeedback onPress={(event)=>this.onPressAction(item.key)}>
+      <View
+        style={styles.item}
+      >
+        <Text style={styles.itemText}>{item.key}</Text>
+      </View>
+      </TouchableWithoutFeedback>
+    );
+  };
 
-  export default DashBoard; 
+  render() {
+    return (
+      <FlatList
+        data={formatData(data, numColumns)}
+        style={styles.container}
+        renderItem={this.renderItem}
+        numColumns={numColumns}
+      />
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  item: {
+    backgroundColor: '#696969',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    margin: 1,
+    height: Dimensions.get('window').width / numColumns, // approximate a square
+  },
+  itemInvisible: {
+    backgroundColor: 'transparent',
+    fontSize: 10
+  },
+  itemText: {
+    color: '#fff',
+    fontSize: 20
+  },
+});
+
+export default DashBoard; 
