@@ -21,6 +21,8 @@
 		185826A5244E2EDE00B181D1 /* login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185826A1244E2EDE00B181D1 /* login.swift */; };
 		185826A6244E2EDE00B181D1 /* SMS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185826A2244E2EDE00B181D1 /* SMS.swift */; };
 		185826A7244E2EDE00B181D1 /* login.m in Sources */ = {isa = PBXBuildFile; fileRef = 185826A3244E2EDE00B181D1 /* login.m */; };
+		189C622124731E7100A80EFE /* AddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 189C622024731E7100A80EFE /* AddressBook.m */; };
+		189C622324731EE100A80EFE /* AddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189C622224731EE100A80EFE /* AddressBook.swift */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -88,6 +90,8 @@
 		185826A1244E2EDE00B181D1 /* login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = login.swift; path = kandy_sample_reactnative_ios/login.swift; sourceTree = "<group>"; };
 		185826A2244E2EDE00B181D1 /* SMS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SMS.swift; path = kandy_sample_reactnative_ios/SMS.swift; sourceTree = "<group>"; };
 		185826A3244E2EDE00B181D1 /* login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = login.m; path = kandy_sample_reactnative_ios/login.m; sourceTree = "<group>"; };
+		189C622024731E7100A80EFE /* AddressBook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AddressBook.m; path = kandy_sample_reactnative_ios/AddressBook.m; sourceTree = "<group>"; };
+		189C622224731EE100A80EFE /* AddressBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressBook.swift; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* kandy_sample_reactnative_ios-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kandy_sample_reactnative_ios-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* kandy_sample_reactnative_ios-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "kandy_sample_reactnative_ios-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3562E7F8365E40289BD5C8C4 /* Pods-kandy_sample_reactnative_ios-kandy_sample_reactnative_iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kandy_sample_reactnative_ios-kandy_sample_reactnative_iosTests.release.xcconfig"; path = "Target Support Files/Pods-kandy_sample_reactnative_ios-kandy_sample_reactnative_iosTests/Pods-kandy_sample_reactnative_ios-kandy_sample_reactnative_iosTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 		13B07FAE1A68108700A75B9A /* kandy_sample_reactnative_ios */ = {
 			isa = PBXGroup;
 			children = (
+				189C622024731E7100A80EFE /* AddressBook.m */,
+				189C622224731EE100A80EFE /* AddressBook.swift */,
 				181A731F246354AF002FBF56 /* Chat.m */,
 				181A731E246354AF002FBF56 /* Chat.swift */,
 				181A731A24635453002FBF56 /* Persence.m */,
@@ -638,6 +644,8 @@
 				185826A7244E2EDE00B181D1 /* login.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				181A731D24635453002FBF56 /* Persence.swift in Sources */,
+				189C622324731EE100A80EFE /* AddressBook.swift in Sources */,
+				189C622124731E7100A80EFE /* AddressBook.m in Sources */,
 				185826A5244E2EDE00B181D1 /* login.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
