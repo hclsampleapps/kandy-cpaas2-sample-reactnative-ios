@@ -39,6 +39,7 @@ import Persence from './Screens/Persence';
 import Chat from './Screens/Chat';
 import DashBoard from './Screens/DashBoard';
 import AddressBook from './Screens/AddressBook';
+import UpdateContact from './Screens/UpdateContact';
 
 const Stack = createStackNavigator();
 
@@ -136,6 +137,21 @@ render()
           },
         }}
         component={AddressBook}
+      />
+
+    <Stack.Screen
+        name="UpdateContact"
+        options={{
+          title: 'UpdateContact',
+          headerStyle: {
+            backgroundColor: '#0391C2',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        component={UpdateContact}
       />
 
     </Stack.Navigator>

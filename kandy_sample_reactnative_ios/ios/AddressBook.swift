@@ -62,7 +62,49 @@ class AddressBook: RCTEventEmitter {
                  self.myNewDictArray = []
          })
   }
+  
+  @objc func updateContact(_ jsonObject:NSString,callback:@escaping RCTResponseSenderBlock){
+          let jsonText = jsonObject
+          var dictonary:NSDictionary?
+          if let data = jsonText.data(using: String.Encoding.utf8.rawValue) {
+              do {
+                dictonary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] as NSDictionary?
+              if let contactDictionary = dictonary {
+                self.updateContactData(contactDictionary: contactDictionary) { (response) in
+                  if(response?.description == "error") {
+                         callback([NSNull()])
+                  }
+                    else {
+                         callback([NSNull(), "sucess"])
+                  }
+                }
+              }
+              } catch let error as NSError {
+                  print(error)
+        }
+  }
+  }
 
+  // In this method we need to update all fields.
+   func updateContactData(contactDictionary: NSDictionary,callback:@escaping RCTResponseSenderBlock) {
+    let entity = CPContact(contactId: contactDictionary["contactId"]! as! String)
+       entity.contactId = contactDictionary["contactId"] as! String
+       entity.email = contactDictionary["email"]! as! String
+       entity.firstName = contactDictionary["firstName"]! as! String
+       entity.lastName = contactDictionary["lastName"]! as! String
+       entity.homePhoneNumber = contactDictionary["homePhoneNumber"]! as! String
+       entity.businessPhoneNumber = contactDictionary["businessPhoneNumber"]! as! String
+       entity.buddy = false
+       cpaas.addressBookService?.updateContact(contact: entity, completion: { (error) in
+           if let error = error {
+               NSLog("Couldn't update the contact to addressbook - Error: \(error.localizedDescription)")
+               callback([NSNull(),"error"])
+           }
+               NSLog("Contact is updated")
+               callback([NSNull(),"sucess"])
+       })
+   }
+  
   override func supportedEvents() -> [String]! {
        return ["messageReceived"]
   }

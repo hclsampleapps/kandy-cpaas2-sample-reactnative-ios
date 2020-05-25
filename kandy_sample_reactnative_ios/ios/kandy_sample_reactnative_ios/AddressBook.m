@@ -7,5 +7,7 @@
 
 RCT_EXTERN_METHOD(initAddressBookModule:(RCTResponseSenderBlock)callback)
 
+RCT_EXTERN_METHOD(updateContact:(NSString *)jsonObject callback:(RCTResponseSenderBlock)callback)
+
 @end
 

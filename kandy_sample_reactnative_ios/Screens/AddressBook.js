@@ -61,6 +61,11 @@ class AddressBook extends React.Component {
     );
    }
 
+   actionOnRow(item) {
+    console.log('Selected Item :',item);
+    this.props.navigation.navigate('UpdateContact')
+   }
+
     render() {
       return (
       <View>
@@ -72,7 +77,7 @@ class AddressBook extends React.Component {
         keyExtractor={(item, index) => index.toString()}
         ItemSeparatorComponent = { this.FlatListItemSeparator }
         renderItem={({ item }) => (
-            <TouchableOpacity>
+          <TouchableOpacity onPress={ () => this.actionOnRow(item)}>
                 <View>
                 <View style={{ flexDirection: 'row'}}>
                         <Text style={styles.cell_text}>{item.firstName}</Text>
@@ -83,7 +88,7 @@ class AddressBook extends React.Component {
                         <Text style={styles.cell_text}>{item.email}</Text>
                     </View>
                 </View>
-            </TouchableOpacity>
+          </TouchableOpacity>
         )}
 
         />
