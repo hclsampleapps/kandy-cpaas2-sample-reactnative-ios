@@ -72,8 +72,8 @@ class AddressBook: RCTEventEmitter {
               if let contactDictionary = dictonary {
                 self.updateContactData(contactDictionary: contactDictionary) { (response) in
                   if(response?.description == "error") {
-                         callback([NSNull()])
-                  }
+                           callback([response?.description as Any,"error"])
+                    }
                     else {
                          callback([NSNull(), "sucess"])
                   }
@@ -98,10 +98,11 @@ class AddressBook: RCTEventEmitter {
        cpaas.addressBookService?.updateContact(contact: entity, completion: { (error) in
            if let error = error {
                NSLog("Couldn't update the contact to addressbook - Error: \(error.localizedDescription)")
-               callback([NSNull(),"error"])
+               callback([error.debugDescription,"error"])
+           } else {
+              NSLog("Contact is updated")
+              callback([NSNull(),"sucess"])
            }
-               NSLog("Contact is updated")
-               callback([NSNull(),"sucess"])
        })
    }
   

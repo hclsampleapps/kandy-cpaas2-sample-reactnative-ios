@@ -19,8 +19,28 @@ class UpdateContact extends React.Component {
       businessPhoneNumber:''
     }
 
-   componentDidMount(){
-   }
+    componentDidMount(){
+      contactData = this.props.route.params.contactData
+
+      var fname = contactData["firstName"]
+      this.setState({ firstName:fname })
+
+      var contactId = contactData["contactId"]
+      this.setState({ primaryContactId:contactId })
+
+      var email = contactData["email"]
+      this.setState({ emailAddress:email })
+
+      var homePhoneNumber = contactData["homePhoneNumber"]
+      this.setState({ homePhoneNumber:homePhoneNumber })
+
+      var businessPhoneNumber = contactData["businessPhoneNumber"]
+      this.setState({ businessPhoneNumber:businessPhoneNumber })
+
+      var lastName = contactData["lastName"]
+      this.setState({ lastName:lastName })
+      
+  }
 
    componentWillUnmount() {
 

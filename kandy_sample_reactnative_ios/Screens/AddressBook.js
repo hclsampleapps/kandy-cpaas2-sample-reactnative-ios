@@ -63,6 +63,9 @@ class AddressBook extends React.Component {
 
    actionOnRow(item) {
     console.log('Selected Item :',item);
+    this.props.navigation.push('UpdateContact',{
+      contactData: item
+    })
     this.props.navigation.navigate('UpdateContact')
    }
 
