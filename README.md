@@ -8,6 +8,8 @@ Sample app made using CPaaS2 APIs to make these modules
 - [x] SMS
 - [x] Chat
 - [x] Persence
+- [x] Addressbook
+
 
 ## Installation
 Instructions to install the .ipa on iPhone using Xcode
