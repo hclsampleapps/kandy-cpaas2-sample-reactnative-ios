@@ -7,14 +7,16 @@ import {
     Text,
     StatusBar,
     NativeModules,
-    Button,
     TextInput,
     TouchableOpacity,
-    ActivityIndicator
+    ActivityIndicator,
+    Button
 } from 'react-native';
 
 import SMS from './SMS'
 import DashBoard from './DashBoard'
+import UpdateContact from './UpdateContact'
+
 
 class Login extends React.Component {
   
@@ -107,9 +109,9 @@ class Login extends React.Component {
                  <ActivityIndicator animating={this.state.showLoader} size="large" color="grey" />
               </View>
 
-          <Button style={styles.buttonStyle}
+          <Button 
+                small
                 title = "Login"
-                color = '#0391C2'
                 onPress = {this.handleLogin}
           />             
 

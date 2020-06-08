@@ -40,6 +40,7 @@ import Chat from './Screens/Chat';
 import DashBoard from './Screens/DashBoard';
 import AddressBook from './Screens/AddressBook';
 import UpdateContact from './Screens/UpdateContact';
+import Directory from './Screens/Directory';
 
 const Stack = createStackNavigator();
 
@@ -152,6 +153,21 @@ render()
           },
         }}
         component={UpdateContact}
+      />
+
+    <Stack.Screen
+        name="Directory"
+        options={{
+          title: 'Directory',
+          headerStyle: {
+            backgroundColor: '#0391C2',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        component={Directory}
       />
 
     </Stack.Navigator>
