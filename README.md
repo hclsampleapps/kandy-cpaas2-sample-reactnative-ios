@@ -9,6 +9,7 @@ Sample app made using CPaaS2 APIs to make these modules
 - [x] Chat
 - [x] Persence
 - [x] Addressbook
+- [x] Directory
 
 
 ## Installation

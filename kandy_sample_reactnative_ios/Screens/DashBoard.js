@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList, Dimensions , TouchableWithoutFeedback} from 'react-native';
 
 const data = [
-  { key: 'SMS' }, { key: 'Chat' }, { key: 'Persence' } , { key: 'AddressBook' }
+  { key: 'SMS' }, { key: 'Chat' }, { key: 'Persence' } , { key: 'AddressBook' } , { key: 'Directory' }
 ];
 
 const formatData = (data, numColumns) => {
@@ -37,6 +37,10 @@ class DashBoard extends React.Component {
         this.props.navigation.navigate('AddressBook')
         break;  
 
+     case 'Directory':
+          this.props.navigation.navigate('Directory')
+          break;  
+  
       default:
         Alert.alert("Wrong Choice");
       }
