@@ -16,6 +16,9 @@
 		181A731D24635453002FBF56 /* Persence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181A731B24635453002FBF56 /* Persence.swift */; };
 		181A7320246354AF002FBF56 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181A731E246354AF002FBF56 /* Chat.swift */; };
 		181A7321246354AF002FBF56 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A731F246354AF002FBF56 /* Chat.m */; };
+		1828C4D624A66CE200ADA0D7 /* CallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C4D524A66CE200ADA0D7 /* CallView.swift */; };
+		1828C4D924A6740D00ADA0D7 /* Call.m in Sources */ = {isa = PBXBuildFile; fileRef = 1828C4D724A6740D00ADA0D7 /* Call.m */; };
+		1828C4DA24A6740D00ADA0D7 /* Call.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1828C4D824A6740D00ADA0D7 /* Call.swift */; };
 		185826A4244E2EDE00B181D1 /* SMS.m in Sources */ = {isa = PBXBuildFile; fileRef = 185826A0244E2EDD00B181D1 /* SMS.m */; };
 		185826A5244E2EDE00B181D1 /* login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185826A1244E2EDE00B181D1 /* login.swift */; };
 		185826A6244E2EDE00B181D1 /* SMS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185826A2244E2EDE00B181D1 /* SMS.swift */; };
@@ -86,6 +89,9 @@
 		1823EF382463F0F9009A5A86 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		1823EF3A2463F10D009A5A86 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		1823EF3C2463F11B009A5A86 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		1828C4D524A66CE200ADA0D7 /* CallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallView.swift; sourceTree = "<group>"; };
+		1828C4D724A6740D00ADA0D7 /* Call.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Call.m; sourceTree = "<group>"; };
+		1828C4D824A6740D00ADA0D7 /* Call.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Call.swift; sourceTree = "<group>"; };
 		1858269F244E2EDD00B181D1 /* kandy_sample_reactnative_ios-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "kandy_sample_reactnative_ios-Bridging-Header.h"; sourceTree = "<group>"; };
 		185826A0244E2EDD00B181D1 /* SMS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMS.m; path = kandy_sample_reactnative_ios/SMS.m; sourceTree = "<group>"; };
 		185826A1244E2EDE00B181D1 /* login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = login.swift; path = kandy_sample_reactnative_ios/login.swift; sourceTree = "<group>"; };
@@ -184,6 +190,9 @@
 		13B07FAE1A68108700A75B9A /* kandy_sample_reactnative_ios */ = {
 			isa = PBXGroup;
 			children = (
+				1828C4D724A6740D00ADA0D7 /* Call.m */,
+				1828C4D824A6740D00ADA0D7 /* Call.swift */,
+				1828C4D524A66CE200ADA0D7 /* CallView.swift */,
 				186AD20E248988260042918F /* Directory.m */,
 				186AD210248988420042918F /* Directory.swift */,
 				189C622024731E7100A80EFE /* AddressBook.m */,
@@ -409,7 +418,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = VP8SJAJ4NU;
+						DevelopmentTeam = 9PJ3V7GYJ4;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -782,7 +791,9 @@
 			files = (
 				185826A4244E2EDE00B181D1 /* SMS.m in Sources */,
 				185826A6244E2EDE00B181D1 /* SMS.swift in Sources */,
+				1828C4DA24A6740D00ADA0D7 /* Call.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				1828C4D924A6740D00ADA0D7 /* Call.m in Sources */,
 				186AD20F248988260042918F /* Directory.m in Sources */,
 				181A731C24635453002FBF56 /* Persence.m in Sources */,
 				181A7320246354AF002FBF56 /* Chat.swift in Sources */,
@@ -792,6 +803,7 @@
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				181A731D24635453002FBF56 /* Persence.swift in Sources */,
 				189C622324731EE100A80EFE /* AddressBook.swift in Sources */,
+				1828C4D624A66CE200ADA0D7 /* CallView.swift in Sources */,
 				189C622124731E7100A80EFE /* AddressBook.m in Sources */,
 				185826A5244E2EDE00B181D1 /* login.swift in Sources */,
 			);
@@ -894,7 +906,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VP8SJAJ4NU;
+				DEVELOPMENT_TEAM = 9PJ3V7GYJ4;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -914,7 +926,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.genband.hcl;
 				PRODUCT_NAME = kandy_sample_reactnative_ios;
 				SWIFT_OBJC_BRIDGING_HEADER = "kandy_sample_reactnative_ios-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -930,7 +942,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VP8SJAJ4NU;
+				DEVELOPMENT_TEAM = 9PJ3V7GYJ4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(inherited)",
@@ -945,7 +957,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.genband.hcl;
 				PRODUCT_NAME = kandy_sample_reactnative_ios;
 				SWIFT_OBJC_BRIDGING_HEADER = "kandy_sample_reactnative_ios-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
