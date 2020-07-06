@@ -7,7 +7,7 @@ class CallView: UIView {
     
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.backgroundColor = .green
+    self.backgroundColor = .gray
     
     localView = UIView()
     localView.backgroundColor = UIColor.red

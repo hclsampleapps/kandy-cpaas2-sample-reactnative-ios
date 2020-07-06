@@ -8,5 +8,17 @@
 
 RCT_EXTERN_METHOD(initCallModule:(RCTResponseSenderBlock)callback)
 
+RCT_EXTERN_METHOD(endCall:(RCTResponseSenderBlock)callback)
+
+RCT_EXTERN_METHOD(muteCall:(RCTResponseSenderBlock)callback)
+
+RCT_EXTERN_METHOD(unmuteCall:(RCTResponseSenderBlock)callback)
+
+RCT_EXTERN_METHOD(holdCall:(RCTResponseSenderBlock)callback)
+
+RCT_EXTERN_METHOD(unholdCall:(RCTResponseSenderBlock)callback)
+
+RCT_EXTERN_METHOD(setOutGoingCall:(NSString *)destinationNumber  callback:(RCTResponseSenderBlock)callback)
+
 @end
 
