@@ -40,7 +40,7 @@ class DashBoard extends React.Component {
      case 'Directory':
           this.props.navigation.navigate('Directory')
           break;  
-  
+          
       default:
         Alert.alert("Wrong Choice");
       }

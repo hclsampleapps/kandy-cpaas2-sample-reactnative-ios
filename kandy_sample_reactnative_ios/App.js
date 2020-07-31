@@ -41,6 +41,7 @@ import DashBoard from './Screens/DashBoard';
 import AddressBook from './Screens/AddressBook';
 import UpdateContact from './Screens/UpdateContact';
 import Directory from './Screens/Directory';
+import Call from './Screens/Call';
 
 const Stack = createStackNavigator();
 
@@ -168,6 +169,21 @@ render()
           },
         }}
         component={Directory}
+      />
+
+    <Stack.Screen
+        name="Call"
+        options={{
+          title: 'Call',
+          headerStyle: {
+            backgroundColor: '#0391C2',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+        component={Call}
       />
 
     </Stack.Navigator>

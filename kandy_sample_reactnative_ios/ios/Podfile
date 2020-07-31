@@ -73,7 +73,7 @@ target 'kandy_sample_reactnative_ios' do
   pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga', :modular_headers => true
 
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
-  pod 'KandyCPaaSMobileSDK' , '2.5.1'
+  pod 'KandyCPaaSMobileSDK' , '2.8.0'
   pod 'Alamofire', '~> 4.0'
   pod 'SwiftyJSON'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'

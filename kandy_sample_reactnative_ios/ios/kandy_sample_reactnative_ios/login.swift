@@ -14,7 +14,7 @@ class LoginModel: NSObject {
 
 @objc(login)
 
-class login: NSObject {
+class login: NSObject,CPLoggingDelegate {
   
   private var sessionManager = Alamofire.SessionManager()
   
@@ -48,6 +48,10 @@ class login: NSObject {
          callback([NSNull()])
       }
     }
+  }
+  
+  func log(_ logLevel: CPLogLevel, withLogContext logContext: String, withMethodName methodName: Selector?, withMessage logMessage: String) {
+        print("logLevel ",logLevel,"MethodName ",methodName! ,"logMessage ",logMessage)
   }
     
   // LOGIN
@@ -103,9 +107,22 @@ class login: NSObject {
 extension login {
   
   func setConfig() {
-    let configuration = CPConfig.sharedInstance()
-    configuration.restServerUrl = "oauth-cpaas.att.com"  //"nvs-cpaas-oauth.kandy.io"
-    configuration.useSecureConnection = true
+      let configuration = CPConfig.sharedInstance()
+         configuration.restServerUrl = "oauth-cpaas.att.com"
+         configuration.logManager.logLevel = .trace
+         configuration.logManager.delegate = self
+         configuration.useSecureConnection = true
+         
+         configuration.iceCollectionTimeout = 12
+         configuration.iceOption = .vanilla
+
+         // Setting ICE Servers
+         let iceServers: CPICEServers = CPICEServers()
+         iceServers.addICEServer("turns:turn-ucc-1.genband.com:443?transport=tcp")
+         iceServers.addICEServer("turns:turn-ucc-2.genband.com:443?transport=tcp")
+         iceServers.addICEServer("stun:turn-ucc-1.genband.com:3478?transport=udp")
+         iceServers.addICEServer("stun:turn-ucc-2.genband.com:3478?transport=udp")
+         configuration.iceServers = iceServers
   }
   
   func subscribeServices() {
