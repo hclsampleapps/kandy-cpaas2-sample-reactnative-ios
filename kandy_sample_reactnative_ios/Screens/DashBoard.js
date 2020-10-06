@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, FlatList, Dimensions , TouchableWithoutFeedback
 
 const data = [
   { key: 'SMS' }, { key: 'Chat' }, { key: 'Persence' } , { key: 'AddressBook' } , { key: 'Directory' }
-];
+  , { key: 'Call' } ];
 
 const formatData = (data, numColumns) => {
   const numberOfFullRows = Math.floor(data.length / numColumns);
@@ -39,6 +39,10 @@ class DashBoard extends React.Component {
 
      case 'Directory':
           this.props.navigation.navigate('Directory')
+          break;  
+
+     case 'Call':
+          this.props.navigation.navigate('Call')
           break;  
           
       default:

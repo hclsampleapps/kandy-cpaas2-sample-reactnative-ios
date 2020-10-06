@@ -10,7 +10,7 @@ Sample app made using CPaaS2 APIs to make these modules
 - [x] Persence
 - [x] Addressbook
 - [x] Directory
-
+- [x] Call
 
 ## Installation
 Instructions to install the .ipa on iPhone using Xcode

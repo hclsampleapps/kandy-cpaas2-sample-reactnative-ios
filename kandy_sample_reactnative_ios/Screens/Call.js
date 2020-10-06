@@ -103,7 +103,7 @@ class Call extends React.Component {
       }
 
       handleOutGoingCall = () => {
-        callManager.setOutGoingCall("test1@karan.prod.lwjn.att.com",(error, message)=>{
+        callManager.setOutGoingCall("userId@domain",(error, message)=>{
           if(message != 'error') {
             console.log("Call started successfully");
                   alert("Call started successfully");
