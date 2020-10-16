@@ -82,8 +82,10 @@ class Persence: RCTEventEmitter,CPPresenceDelegate {
                 }
                 // Take second step of fetching status for this list
                 self.presentitylist?.fetchStatus { (error, presentityStatusList) in
-                  self.listOfPresenties(list: presentityStatusList!)
-                  callback(self.prenties)
+                  if(presentityStatusList != nil) {
+                       self.listOfPresenties(list: presentityStatusList!)
+                       callback(self.prenties)
+                  }
                 }
             } else {
               callback([error.debugDescription,"error"])
