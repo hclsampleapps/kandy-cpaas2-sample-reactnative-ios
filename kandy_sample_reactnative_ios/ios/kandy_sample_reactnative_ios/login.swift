@@ -111,7 +111,6 @@ extension login {
          configuration.restServerUrl = "oauth-cpaas.att.com"
          configuration.logManager.logLevel = .trace
          configuration.logManager.delegate = self
-         configuration.useSecureConnection = true
          
          configuration.iceCollectionTimeout = 12
          configuration.iceOption = .vanilla
