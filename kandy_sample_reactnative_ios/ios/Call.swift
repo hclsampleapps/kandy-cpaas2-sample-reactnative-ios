@@ -268,5 +268,12 @@ class Call: RCTViewManager,CPCallApplicationDelegate {
   func forwardCallFailed(_ call: CPCallDelegate, withError error: CPError) {
     
   }
+  func sendRingingFeedbackSucceed(_ call: CPIncomingCallDelegate) {
+    
+  }
+  
+  func sendRingingFeedbackFailed(_ call: CPIncomingCallDelegate, withError error: CPError) {
+    
+  }
   
 }
